@@ -24,17 +24,66 @@ namespace berek2020
       Beolvas();
       Masodikfeladat();
       Harmadikfeladat();
+      Negyedikfeladat();
+      
+    }
+
+    private void Otodikfeladat()
+    {
+      string reszleg = tbBekeres.Text;
+      //if (reszleg == " ")
+      //{
+      //  MessageBox.Show("Nem adtál meg adatot");
+      //}
+
+      
+      //foreach (var b in berek)
+      //{
+
+      //  if (reszleg != b.Beszerzes)
+      //  {
+      //    MessageBox.Show("Nem létezik ilyen részleg!");
+      //  }
+
+      //}
+
+    }
+
+    private void Negyedikfeladat()
+    {
+      
+      MessageBox.Show("Kérek egy részleg nevet:", "Adatbekérés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+      tbBekeres.Enabled = true;
+      tbBekeres.Focus();
+      Otodikfeladat();
     }
 
     private void Harmadikfeladat()
     {
-      
+      int ossz = 0;
+      double atlag = 0;
+
+      foreach (var b in berek)
+      {
+        ossz += b.Fizetes;
+      }
+        atlag = ossz / berek.Count / 1000;
+        lbAtlag.Items.Add($"{atlag:N1}eFT");
     }
 
     private void Masodikfeladat()
     {
       string ki = $"{berek.Count} fő";
       lbKimenet.Items.Add(ki);
+
+      foreach (var b in berek)
+      {
+        lbDolgozoklista.Items.Add(b.Nev);
+        lbDolgozoklista.Items.Add(b.Neme);
+        lbDolgozoklista.Items.Add(b.Beszerzes);
+      }
     }
 
     private void Beolvas()
@@ -53,6 +102,11 @@ namespace berek2020
 
         be.Close();
       
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+
     }
   }
 }
